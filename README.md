@@ -1,10 +1,10 @@
 # WebGPU 学習
 
-https://spoon-inoue.github.io/webgpu-fundamentals/
+https://spoon-inoue.github.io/webgpu-learning-2026/
 
 ## セクション
 
-- [01.fundamentals](https://github.com/spoon-inoue/webgpu-fundamentals/tree/main/src/pages/01.fundamentals)
+- [01.fundamentals](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/01.fundamentals)
 
 ## 参考サイト
 
