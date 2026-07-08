@@ -5,6 +5,7 @@ https://spoon-inoue.github.io/webgpu-learning-2026/
 ## セクション
 
 - [01.fundamentals](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/01.fundamentals)
+- [02.inter-stage-variables](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/02.inter-stage-variables)
 
 ## 参考サイト
 

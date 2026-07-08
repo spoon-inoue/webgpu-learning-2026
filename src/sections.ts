@@ -8,6 +8,9 @@ export const sections: { title: string; links: { href: string; label: string; ha
   },
   {
     title: 'inter-stage(シェーダ間)変数',
-    links: [{ href: '/02.inter-stage-variables', label: 'index' }],
+    links: [
+      { href: '/02.inter-stage-variables/sample1', label: 'サンプル1', hasThree: true },
+      { href: '/02.inter-stage-variables/sample2', label: 'サンプル2', hasThree: true },
+    ],
   },
 ]
