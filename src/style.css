@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  background: #1e1e1e;
+  color: #cfcfcf;
+  font-size: 16px;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+ul {
+  counter-reset: section;
+  margin-inline: auto;
+  width: 30vw;
+  min-width: fit-content;
+
+  li {
+    counter-increment: section;
+    list-style: none;
+
+    + li {
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px solid color-mix(in srgb, #fff, transparent 70%);
+    }
+
+    .title {
+      font-size: 17px;
+      display: grid;
+      grid-template-columns: 30px 1fr;
+
+      &::before {
+        content: counter(section, decimal-leading-zero) '.';
+      }
+    }
+
+    a {
+      margin-left: 15px;
+      text-decoration: none;
+      font-weight: 350;
+      color: rgb(25, 156, 218);
+
+      &[href$='/threejs/'] {
+        display: inline-flex;
+        margin-left: 2px;
+        gap: 5px;
+        &::before {
+          content: '｜';
+        }
+      }
+    }
+  }
+}
+
+canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 100%;
+  height: 100%;
+}
