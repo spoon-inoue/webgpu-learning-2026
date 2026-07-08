@@ -36,7 +36,7 @@ const bindGroup = device.createBindGroup({
   entries: [{ binding: 0, resource: workBuffer }],
 })
 
-// render
+// execute
 const encoder = device.createCommandEncoder({ label: 'doubling encoder' })
 
 const pass = encoder.beginComputePass({ label: 'doubling compute pass' })

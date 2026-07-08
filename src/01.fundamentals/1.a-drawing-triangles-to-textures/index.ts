@@ -1,3 +1,4 @@
+import { createResizeObserver } from '@/modules/webgpu/resize'
 import shader from './index.wgsl'
 
 const adapter = await navigator.gpu?.requestAdapter()
@@ -56,4 +57,4 @@ function render(device: GPUDevice) {
   device.queue.submit([commandBuffer])
 }
 
-render(device)
+createResizeObserver(device, render).observe(canvas)
