@@ -90,6 +90,6 @@ device.queue.submit([commandBuffer]);
 
 ## 三角形の描画
 
-https://github.com/spoon-inoue/webgpu-fundamentals/tree/main/src/pages/01.fundamentals/1.a-drawing-triangles-to-textures
+https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/01.fundamentals/1.a-drawing-triangles-to-textures
 
 ## 計算の実行
