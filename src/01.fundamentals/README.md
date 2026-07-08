@@ -27,7 +27,8 @@ JavaScript（CPU上）での`array.forEach`や`array.map`に似ている。
 
 canvasに描画するWebGPUアプリケーションを単純化した構造
 
-<図>
+> <img width="1000" height="460" alt="Frame 46" src="https://github.com/user-attachments/assets/fad6a650-9bc8-45b8-b168-95915fb6180f" />
+> https://webgpufundamentals.org/webgpu/lessons/ja/webgpu-fundamentals.html#a-draw-diagram
 
 - Pipline
   - `Vertex Shader`, `Fragment Shader`, `Compute Shader`, `Attributes`を設定する
