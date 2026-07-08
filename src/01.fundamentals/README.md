@@ -93,3 +93,5 @@ device.queue.submit([commandBuffer]);
 https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/01.fundamentals/1.a-drawing-triangles-to-textures
 
 ## 計算の実行
+
+https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/01.fundamentals/2.a-run-computations-on-the-gpu
