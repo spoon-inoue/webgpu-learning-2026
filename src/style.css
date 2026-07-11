@@ -71,9 +71,3 @@ canvas {
   width: 100%;
   height: 100%;
 }
-
-a.back-to-index {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-}
