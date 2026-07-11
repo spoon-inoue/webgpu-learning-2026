@@ -1,5 +1,7 @@
 # 概要・所感
 
+https://webgpufundamentals.org/webgpu/lessons/ja/webgpu-fundamentals.html
+
 ## WebGPU APIの役割
 
 - 三角形/点/直線を、テクスチャ（Canvas）に描く

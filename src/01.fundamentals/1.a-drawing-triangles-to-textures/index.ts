@@ -48,6 +48,7 @@ function render(device: GPUDevice) {
   renderPassDescriptor.colorAttachments[0]!.view = context.getCurrentTexture().createView()
 
   const encoder = device.createCommandEncoder({ label: 'our encoder' })
+
   const pass = encoder.beginRenderPass(renderPassDescriptor)
   pass.setPipeline(pipeline)
   pass.draw(3)

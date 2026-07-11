@@ -1,4 +1,4 @@
-export const sections: { title: string; links: { href: string; label: string; hasThree?: boolean }[] }[] = [
+export const sections: { title: string; links: { href: string; label: string; hasWgu?: boolean; hasThree?: boolean }[] }[] = [
   {
     title: 'WebGPUの基本',
     links: [
@@ -9,8 +9,16 @@ export const sections: { title: string; links: { href: string; label: string; ha
   {
     title: 'inter-stage(シェーダ間)変数',
     links: [
-      { href: '/02.inter-stage-variables/sample1', label: 'サンプル1', hasThree: true },
-      { href: '/02.inter-stage-variables/sample2', label: 'サンプル2', hasThree: true },
+      { href: '/02.inter-stage-variables/sample1', label: 'RGBカラー', hasThree: true },
+      { href: '/02.inter-stage-variables/sample2', label: '市松模様', hasThree: true },
+    ],
+  },
+  {
+    title: 'ユニフォーム',
+    links: [
+      { href: '/03.uniforms/sample1', label: '三角形:1つ', hasWgu: true, hasThree: true },
+      { href: '/03.uniforms/sample2', label: '三角形:多数', hasWgu: true, hasThree: true },
+      { href: '/03.uniforms/sample3', label: '三角形:多数2', hasWgu: true, hasThree: true },
     ],
   },
 ]
