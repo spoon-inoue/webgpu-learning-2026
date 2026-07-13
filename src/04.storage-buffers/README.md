@@ -42,7 +42,7 @@ dataTexture.needsUpdate = true
 ```
 
 構造は以下のようになる。  
-<図>
+<img width="600px" alt="Frame 49" src="https://github.com/user-attachments/assets/c7a3a68a-b870-45ba-8538-abd5b6b3ada3" />
 
 このData Textureは、shaderで0~1の範囲で参照されるため、以下のように考える。
 
