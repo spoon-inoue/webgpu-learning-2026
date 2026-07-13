@@ -74,8 +74,7 @@ struct Ex2 {
   projection: mat4x4f,
 };
 ```
-
-<図>
+<img width="539" height="292" alt="スクリーンショット 2026-07-13 174429" src="https://github.com/user-attachments/assets/9f7464ca-af29-414b-9e4f-5f5f6bfe3aa6" />
 
 | Type          | Size | Align |
 | ------------- | ---: | ----: |
