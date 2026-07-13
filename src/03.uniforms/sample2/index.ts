@@ -94,6 +94,7 @@ function render(device: GPUDevice) {
   pass.setPipeline(pipeline)
 
   const aspect = canvas.width / canvas.height
+
   for (const { scale, bindGroup, uniformBuffer, uniformValues } of objectInfos) {
     // set scale
     uniformValues.set([scale / aspect, scale], kScaleOffset)

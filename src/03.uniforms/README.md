@@ -40,7 +40,7 @@ fn fs() -> @location(0) vec4f {
 
 ### JS
 
-Uniformを扱うためのGPU Bufferを生成する
+#### Uniformを扱うための`GPU Buffer`を生成する
 
 ```ts
 const uniformBufferSize =
@@ -54,7 +54,37 @@ const uniformBuffer = device.createBuffer({
 })
 ```
 
-#### メモリレイアウトについて
+#### `CPU Buffer`に接続するためのViewを生成して、データを書き込む
+
+```ts
+const uniformValues = new Float32Array(uniformBufferSize / 4)
+
+const kColorOffset = 0
+const kScaleOffset = 4
+const kOffsetOffset = 6
+
+// set color
+uniformValues.set([0, 1, 0, 1], kColorOffset)
+// set offset
+uniformValues.set([-0.5, -0.25], kOffsetOffset)
+```
+
+- TypedArrayにデータの構造を指定する場合は、データの長さ（数）を指定する
+- GPUオブジェクトにデータの構造を指定する場合は、厳密なメモリサイズを指定する必要があるので`BufferSize`を指定する
+- lengthとsizeの違い
+
+#### Bind Groupを生成する
+
+```ts
+const bindGroup = device.createBindGroup({
+  layout: pipeline.getBindGroupLayout(0),
+  entries: [{ binding: 0, resource: uniformBuffer }],
+})
+```
+
+- `binding: n`は、`@binding(n)`と一致させる
+
+### メモリレイアウトについて
 
 こちらは、後のセクションなので、要点のみ説明する
 
@@ -74,6 +104,7 @@ struct Ex2 {
   projection: mat4x4f,
 };
 ```
+
 <img width="539" height="292" alt="スクリーンショット 2026-07-13 174429" src="https://github.com/user-attachments/assets/9f7464ca-af29-414b-9e4f-5f5f6bfe3aa6" />
 
 | Type          | Size | Align |
@@ -114,3 +145,144 @@ struct Ex2 {
 | `mat3x4<f16>` |   24 |     8 |
 | `mat4x4<f32>` |   64 |    16 |
 | `mat4x4<f16>` |   32 |     8 |
+
+## 複数の三角形を描画する
+
+複数の`Uniform Buffer`, `Bind Group`を用意して、drawコマンドごとに切り替える
+
+```ts
+function render(device: GPUDevice) {
+  renderPassDescriptor.colorAttachments[0]!.view = context.getCurrentTexture().createView()
+
+  const encoder = device.createCommandEncoder()
+  const pass = encoder.beginRenderPass(renderPassDescriptor)
+  pass.setPipeline(pipeline)
+
+  const aspect = canvas.width / canvas.height
+
+  for (const { scale, bindGroup, uniformBuffer, uniformValues } of objectInfos) {
+    uniformValues.set([scale / aspect, scale], kScaleOffset)
+    device.queue.writeBuffer(uniformBuffer, 0, uniformValues)
+
+    pass.setBindGroup(0, bindGroup)
+    pass.draw(3)
+  }
+
+  pass.end()
+
+  device.queue.submit([encoder.finish()])
+}
+```
+
+### ダメなパターン
+
+1. Uniform Bufferに書き込んで、drawコマンドを設定する
+
+```ts
+for (let x = -1; x < 1; x += 0.1) {
+  uniformValues.set([x, x], kOffsetOffset)
+  device.queue.writeBuffer(uniformBuffer, 0, uniformValues)
+  pass.draw(3)
+}
+pass.end()
+```
+
+- 描画コマンドが実行されるのは`submit`のタイミングなので、`uniformBuffer`の値はすべてのオブジェクトについて、最後に書き込んだ値になってしまう
+
+2. コマンドバッファをdrawコマンドだけ生成する
+
+```ts
+for (let x = -1; x < 1; x += 0.1) {
+  uniformValues.set([x, 0], kOffsetOffset)
+  device.queue.writeBuffer(uniformBuffer, 0, uniformValues)
+
+  const encoder = device.createCommandEncoder()
+  const pass = encoder.beginRenderPass(renderPassDescriptor)
+  pass.setPipeline(pipeline)
+  pass.setBindGroup(0, bindGroup)
+  pass.draw(3)
+  pass.end()
+
+  device.queue.submit([encoder.finish()])
+}
+```
+
+- 都度、コマンドバッファを作成するのは負荷が高い
+- ベストプラクティスは、単一のコマンドバッファに対して複数のdrawコールを設定する
+
+## Uniformを用途でわける
+
+三角形を複数描画する例だと、render関数が呼ばれるたびに、ScaleをUniform Valuesに書き込み、Uniform Values全体をUniform Bufferにwriteしている。  
+そのため、本来更新が必要ないcolorやoffsetのデータまで上書きをしているため、効率が悪い。
+
+Uniformを用途ごとに分けることで、更新の効率を向上させる。
+
+### WGSL
+
+```wgsl
+struct OurStruct {
+  color: vec4f,
+  offset: vec2f,
+}
+
+struct OtherStruct {
+  scale: vec2f,
+}
+
+@group(0) @binding(0) var<uniform> ourStruct: OurStruct;
+@group(0) @binding(1) var<uniform> otherStruct: OtherStruct;
+```
+
+用途として、以下のように決める
+
+- `ourStruct`は、初期化時に設定した値から変更しない
+- `otherStruct`は、render関数が呼ばれるたびに値が更新される
+
+### JS
+
+```ts
+const objectInfos = Array.from({ length: kNumObjects }, (_, i) => {
+  // static uniform
+  // ・・・
+
+  // changing uniform
+  const uniformValues = new Float32Array(uniformBufferSize / 4)
+
+  const uniformBuffer = device.createBuffer({
+    label: `changing uniforms for obj: ${i}`,
+    size: uniformBufferSize,
+    usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
+  })
+
+  const bindGroup = device.createBindGroup({
+    label: `bind group for obj: ${i}`,
+    layout: pipeline.getBindGroupLayout(0),
+    entries: [
+      { binding: 0, resource: staticUniformBuffer },
+      { binding: 1, resource: uniformBuffer },
+    ],
+  })
+
+  return {
+    scale: rand(0.2, 0.5),
+    uniformBuffer,
+    uniformValues,
+    bindGroup,
+  }
+})
+```
+
+render関数内
+
+```ts
+for (const { scale, bindGroup, uniformBuffer, uniformValues } of objectInfos) {
+  // set scale
+  uniformValues.set([scale / aspect, scale], kScaleOffset)
+  device.queue.writeBuffer(uniformBuffer, 0, uniformValues)
+
+  pass.setBindGroup(0, bindGroup)
+  pass.draw(3)
+}
+```
+
+- uniformValues, uniformBufferを変更される用途のUniform（この場合、scaleのみを扱う）として、render関数内で更新する
