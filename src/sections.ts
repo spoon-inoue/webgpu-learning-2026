@@ -21,4 +21,12 @@ export const sections: { title: string; links: { href: string; label: string; ha
       { href: '/03.uniforms/sample3', label: '三角形:多数2', hasWgu: true, hasThree: true },
     ],
   },
+  {
+    title: 'ストレージバッファ',
+    links: [
+      { href: '/04.storage-buffers/01.basic', label: 'strogeへの置換', hasWgu: true, hasThree: true },
+      { href: '/04.storage-buffers/02.instancing', label: 'インスタンス化', hasWgu: true, hasThree: true },
+      { href: '/04.storage-buffers/03.vertex-data-with-storage', label: '頂点データのStorage化', hasWgu: true, hasThree: true },
+    ],
+  },
 ]

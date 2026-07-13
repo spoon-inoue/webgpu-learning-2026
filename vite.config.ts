@@ -12,9 +12,7 @@ export default {
   build: {
     outDir: '../dist',
     rollupOptions: {
-      input: Object.fromEntries(
-        globSync('src/**/*.html').map((file) => [file.slice('src/'.length, file.length - '.html'.length), path.resolve(__dirname, file)]),
-      ),
+      input: getInputs(),
     },
   },
   resolve: {
@@ -24,3 +22,16 @@ export default {
     },
   },
 } satisfies UserConfig
+
+function getInputs() {
+  const list: [string, string][] = []
+  for (const file of globSync('src/**/*.html')) {
+    const key = file.slice('src/'.length, file.length - '.html'.length)
+    if (!key.includes('components')) {
+      list.push([key, path.resolve(__dirname, file)])
+    }
+  }
+  if (0 < list.length) {
+    return Object.fromEntries(list)
+  }
+}
