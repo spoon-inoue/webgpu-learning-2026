@@ -1,13 +1,13 @@
 # GPUオブジェクト
 
-1. 考え方
+**考え方**
 
 - Shaderに書かれている内容を、GPUに説明するためのオブジェクト
 - Shader起点で構造が決まる
 
-2. 概念図
+**構造図**
 
-<図>
+<img width="1000" height="550" alt="Frame 46" src="https://github.com/user-attachments/assets/1f0ab8da-fe7c-44e3-a89c-c2048bee960e" />
 
 ## ShaderModule
 
