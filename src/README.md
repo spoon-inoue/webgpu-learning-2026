@@ -7,7 +7,7 @@
 
 **構造図**
 
-<img width="1000" height="550" alt="Frame 46" src="https://github.com/user-attachments/assets/1f0ab8da-fe7c-44e3-a89c-c2048bee960e" />
+<img width="800" alt="Frame 46" src="https://github.com/user-attachments/assets/1f0ab8da-fe7c-44e3-a89c-c2048bee960e" />
 
 ## ShaderModule
 
