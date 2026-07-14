@@ -29,4 +29,12 @@ export const sections: { title: string; links: { href: string; label: string; ha
       { href: '/04.storage-buffers/03.vertex-data-with-storage', label: '頂点データのStorage化', hasWgu: true, hasThree: true },
     ],
   },
+  {
+    title: '透視投影',
+    links: [
+      { href: '/50.perspective-projection/01.divideZ', label: 'Zで割る', hasWgu: true, hasThree: true },
+      { href: '/50.perspective-projection/02.matrix', label: 'Matrixに統合する', hasWgu: true, hasThree: true },
+      { href: '/50.perspective-projection/03.perspective', label: '透視投影', hasWgu: true, hasThree: true },
+    ],
+  },
 ]

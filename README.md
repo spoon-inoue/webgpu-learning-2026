@@ -6,6 +6,8 @@ https://spoon-inoue.github.io/webgpu-learning-2026/
 
 - [01.fundamentals](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/01.fundamentals)
 - [02.inter-stage-variables](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/02.inter-stage-variables)
+- [03.uniforms](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/03.uniforms)
+- [04.storage-buffers](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/04.storage-buffers)
 
 ## 参考サイト
 
