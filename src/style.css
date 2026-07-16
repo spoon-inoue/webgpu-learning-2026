@@ -41,10 +41,14 @@ ul {
     .title {
       font-size: 17px;
       display: grid;
-      grid-template-columns: 30px 1fr;
+      grid-template-columns: 25px 1fr;
+      align-items: end;
 
       &::before {
         content: counter(section, decimal-leading-zero) '.';
+        font-size: 0.8em;
+        opacity: 0.8;
+        font-weight: 300;
       }
     }
 

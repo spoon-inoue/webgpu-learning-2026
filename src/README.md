@@ -165,24 +165,20 @@ const pipelineLayout = device.createPipelineLayout({
 ```ts
 const pipeline = device.createRenderPipeline({
   layout: pipelineLayout,
-
   vertex: {
     module: shaderModule,
     entryPoint: 'vs',
   },
-
   fragment: {
     module: shaderModule,
     entryPoint: 'fs',
     targets: [{ format: navigator.gpu.getPreferredCanvasFormat() }],
   },
-
   primitive: {
     topology: 'triangle-list',
     cullMode: 'back',
     frontFace: 'ccw', // 表面と判定する頂点の並び（ccw / cw）
   },
-
   depthStencil: {
     format: 'depth24plus',
     depthWriteEnabled: true,

@@ -1,4 +1,4 @@
-export function createResizeObserver(device: GPUDevice, callback: (device: GPUDevice) => void) {
+export function createResizeObserver(device: GPUDevice, callback: (...args: any) => void) {
   const observer = new ResizeObserver((entries) => {
     for (const entry of entries) {
       const canvas = entry.target as HTMLCanvasElement
