@@ -94,4 +94,9 @@ canvas {
       10px 10px,
       10px 10px;
   }
+
+  &.pixelated {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+  }
 }

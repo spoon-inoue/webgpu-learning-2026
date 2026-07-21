@@ -35,7 +35,11 @@ export const sections: { title: string; links: { href: string; label: string; ha
   },
   {
     title: 'テクスチャ',
-    links: [{ href: '/06.textures/01.basic', label: 'Fの描画' }],
+    links: [
+      { href: '/06.textures/01.F-texture', label: 'Fの描画' },
+      { href: '/06.textures/02.magFilter', label: 'magFilter' },
+      { href: '/06.textures/03.minFilter', label: 'minFilter' },
+    ],
   },
   {
     title: '透視投影',
