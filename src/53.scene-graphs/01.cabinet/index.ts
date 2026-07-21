@@ -9,7 +9,6 @@ import { mat4 } from './matrix'
 import { SceneGraphNode } from './SceneGraphNode'
 import { TRS, type TRSSource } from './TRS'
 import { createCubeVertices } from './vertices'
-import { TRSUIHelper } from './TRSUIHelper'
 
 // ==========================
 // setup

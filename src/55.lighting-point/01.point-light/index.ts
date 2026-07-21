@@ -1,13 +1,12 @@
-import { createResizeObserver } from '@/modules/webgpu/resize'
-import shader from './index.wgsl'
-import { createFVertices } from './vertices'
-import GUI from 'lil-gui'
 import { degToRad } from '@/modules/common/math'
-import { mat3, mat4 } from './matrix'
+import type { Vec3 } from '@/modules/common/types'
 import { GPU } from '@/modules/webgpu/GPU'
 import { RenderTarget } from '@/modules/webgpu/RenderTarget'
-import type { Vec3 } from '@/modules/common/types'
-import { vec3 } from './vec3'
+import { createResizeObserver } from '@/modules/webgpu/resize'
+import GUI from 'lil-gui'
+import shader from './index.wgsl'
+import { mat3, mat4 } from './matrix'
+import { createFVertices } from './vertices'
 
 // ==========================
 // setup

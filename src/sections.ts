@@ -30,6 +30,14 @@ export const sections: { title: string; links: { href: string; label: string; ha
     ],
   },
   {
+    title: '頂点バッファ',
+    links: [{ href: '/05.vertex-buffers', label: '頂点バッファ' }],
+  },
+  {
+    title: 'テクスチャ',
+    links: [{ href: '/06.textures/01.basic', label: 'Fの描画' }],
+  },
+  {
     title: '透視投影',
     links: [
       { href: '/50.perspective-projection/01.divideZ', label: 'Zで割る', hasWgu: true, hasThree: true },
@@ -73,5 +81,13 @@ export const sections: { title: string; links: { href: string; label: string; ha
   {
     title: 'スポットライト',
     links: [{ href: '/56.lighting-spot', label: 'スポットライト' }],
+  },
+  {
+    title: 'クリップ空間をカバーする大きな三角形',
+    links: [{ href: '/57.large-triangle-to-cover-clip-space', label: 'クリップ空間をカバーする大きな三角形' }],
+  },
+  {
+    title: '環境マップ（反射）',
+    links: [{ href: '/58.environment-maps', label: '環境マップ（反射）' }],
   },
 ]

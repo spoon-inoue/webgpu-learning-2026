@@ -1,6 +1,7 @@
 type Configure = {
   format?: GPUTextureFormat
   alphaMode?: GPUCanvasAlphaMode
+  clearColor?: [number, number, number, number]
 }
 
 type RenderTargetArgs = {
@@ -48,6 +49,7 @@ export class RenderTarget {
       colorAttachments: [
         {
           view: null as any,
+          clearValue: this.args.configure?.clearColor,
           loadOp: 'clear',
           storeOp: 'store',
         },

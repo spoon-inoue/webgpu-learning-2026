@@ -1,4 +1,4 @@
-import type { Matrix, Triple, Vec3 } from '@/modules/common/types'
+import type { Matrix, Triple } from '@/modules/common/types'
 import { mat4 } from './matrix'
 
 export class MatrixStack {

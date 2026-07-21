@@ -1,6 +1,7 @@
 struct VSOut {
   @builtin(position) position: vec4f,
-  @location(0) color: vec4f,
+  // @location(0) color: vec4f,
+  @location(0) @interpolate(flat) instanceIndex: u32,
 }
 
 struct OurStruct {
@@ -31,11 +32,13 @@ fn vs(
 
   var vsOut: VSOut;
   vsOut.position = vec4f(pos[vertexIndex] * otherStruct.scale + ourStruct.offset, 0, 1);
-  vsOut.color = ourStruct.color;
+  // vsOut.color = ourStruct.color;
+  vsOut.instanceIndex = instanceIndex;
   return vsOut;
 }
 
 @fragment
 fn fs(fsIn: VSOut) -> @location(0) vec4f {
-  return fsIn.color;
+  // return fsIn.color;
+  return ourStructs[fsIn.instanceIndex].color;
 }
