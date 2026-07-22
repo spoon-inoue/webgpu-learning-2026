@@ -195,8 +195,8 @@ const sampler = device.createSampler({
 
 サンプル
 
-<img width="800" alt="スクリーンショット 2026-07-22 143235" src="https://github.com/user-attachments/assets/cf43e181-6950-46a1-8513-68ba1f8292d1" />
-<img width="800" alt="スクリーンショット 2026-07-22 143249" src="https://github.com/user-attachments/assets/b08269c5-bacd-4965-9a93-8460f657d025" />
+<img width="800" alt="スクリーンショット 2026-07-22 175559" src="https://github.com/user-attachments/assets/9ea346d5-4c60-440f-995c-32017c97c071" />
+<img width="800" alt="スクリーンショット 2026-07-22 175620" src="https://github.com/user-attachments/assets/e9d4f0ce-6f2d-4360-b7f8-60231af94f2f" />
 
 | 位置  | magFilter | minFilter | mipmapFilter |
 | :---- | :-------- | :-------- | :----------- |
