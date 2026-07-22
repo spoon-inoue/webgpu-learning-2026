@@ -198,7 +198,6 @@ const sampler = device.createSampler({
 <img width="800" alt="スクリーンショット 2026-07-22 143235" src="https://github.com/user-attachments/assets/cf43e181-6950-46a1-8513-68ba1f8292d1" />
 <img width="800" alt="スクリーンショット 2026-07-22 143249" src="https://github.com/user-attachments/assets/b08269c5-bacd-4965-9a93-8460f657d025" />
 
-
 | 位置  | magFilter | minFilter | mipmapFilter |
 | :---- | :-------- | :-------- | :----------- |
 | 上左1 | ◇ nearest | ◇ nearest | ◇ nearest    |

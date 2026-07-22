@@ -2,9 +2,10 @@ import { GPU } from '@/modules/webgpu/GPU'
 import { RenderTarget } from '@/modules/webgpu/RenderTarget'
 import { createResizeObserver } from '@/modules/webgpu/resize'
 import { GUI } from 'lil-gui'
-import type { TypedArray } from 'webgpu-utils'
+import * as wgu from 'webgpu-utils'
 import { mat4 } from 'wgpu-matrix'
 import shaderCode from './index.wgsl'
+import type { TypedArray } from 'webgpu-utils'
 
 const { device, presentationFormat } = await GPU.request()
 
@@ -30,64 +31,6 @@ const pipeline = device.createRenderPipeline({
 // mipmap
 // =============================
 type Mip = { data: TypedArray; width: number; height: number }
-
-const lerp = (a: number, b: number, t: number) => a + (b - a) * t
-const mix = (a: Uint8Array, b: Uint8Array, t: number) => a.map((v, i) => lerp(v, b[i], t))
-const bilinearFilter = (tl: Uint8Array, tr: Uint8Array, bl: Uint8Array, br: Uint8Array, t1: number, t2: number) => {
-  const t = mix(tl, tr, t1)
-  const b = mix(bl, br, t1)
-  return mix(t, b, t2)
-}
-
-const createNextMipLevelRgba8Unorm = ({ data: src, width: srcWidth, height: srcHeight }: { data: Uint8Array; width: number; height: number }) => {
-  const dstWidth = Math.max(1, (srcWidth / 2) | 0)
-  const dstHeight = Math.max(1, (srcHeight / 2) | 0)
-  const dst = new Uint8Array(dstWidth * dstHeight * 4)
-
-  const getSrcPixel = (x: number, y: number) => {
-    const offset = (y * srcWidth + x) * 4
-    return src.subarray(offset, offset + 4)
-  }
-
-  for (let y = 0; y < dstHeight; y++) {
-    for (let x = 0; x < dstWidth; x++) {
-      // 宛先テクセルの中心のテクスチャ座標を計算する
-      const u = (x + 0.5) / dstWidth
-      const v = (y + 0.5) / dstHeight
-      // sourceで同じテクスチャ座標を計算する - 0.5px
-      const au = u * srcWidth - 0.5
-      const av = v * srcHeight - 0.5
-      // sourceの左上のテクセル座標（テクスチャ座標ではない）を計算する
-      const tx = au | 0
-      const ty = av | 0
-      // ピクセル間の混合量を計算する
-      const t1 = au % 1
-      const t2 = av % 1
-      // 4つのピクセルを取得する
-      const tl = getSrcPixel(tx, ty)
-      const tr = getSrcPixel(tx + 1, ty)
-      const bl = getSrcPixel(tx, ty + 1)
-      const br = getSrcPixel(tx + 1, ty + 1)
-      // 「サンプリングされた」結果を宛先にコピーする
-      const dstOffset = (y * dstWidth + x) * 4
-      dst.set(bilinearFilter(tl, tr, bl, br, t1, t2), dstOffset)
-    }
-  }
-  return { data: dst, width: dstWidth, height: dstHeight }
-}
-
-const generateMips = (src: Uint8Array, srcWidth: number) => {
-  const srcHeight = src.length / 4 / srcWidth
-  // 最初のミップレベル（ベースレベル）を設定する
-  let mip = { data: src, width: srcWidth, height: srcHeight }
-  const mips = [mip]
-
-  while (mip.width > 1 || mip.height > 1) {
-    mip = createNextMipLevelRgba8Unorm(mip)
-    mips.push(mip)
-  }
-  return mips
-}
 
 const createCheckedMipmap = () => {
   const ctx = document.createElement('canvas').getContext('2d', { willReadFrequently: true })!
@@ -138,7 +81,7 @@ const createBlendedMipmap = () => {
     w, w, r, r, r, r, r, g, g, r, r, r, r, r, w, w,
     w, r, r, r, r, r, r, g, g, r, r, r, r, r, r, w,
   ].flat());
-  return generateMips(data, 16);
+  return { data, width: 16 };
 }
 
 const createTextureWithMips = (mips: Mip[], label: string) => {
@@ -163,13 +106,13 @@ const createTextureWithMips = (mips: Mip[], label: string) => {
 
 // prettier-ignore
 const textures = [
-  createTextureWithMips(createBlendedMipmap(), 'blended'),
+  wgu.createTextureFromSource(device, createBlendedMipmap(), { mips: true }),
   createTextureWithMips(createCheckedMipmap(), 'checker'),
 ]
 
 const kMatrixOffset = 0
 
-const ObjectInfos = Array.from({ length: 8 }, (_, i) => {
+const objectInfos = Array.from({ length: 8 }, (_, i) => {
   const sampler = device.createSampler({
     addressModeU: 'repeat',
     addressModeV: 'repeat',
@@ -240,7 +183,7 @@ function render() {
   const pass = encoder.beginRenderPass(renderTarget.renderPassDescriptor)
   pass.setPipeline(pipeline)
 
-  ObjectInfos.forEach(({ bindGroups, matrix, uniformBuffer, uniformValues }, i) => {
+  objectInfos.forEach(({ bindGroups, matrix, uniformBuffer, uniformValues }, i) => {
     const bindGroup = bindGroups[texNdx]
 
     const xSpacing = 1.2
