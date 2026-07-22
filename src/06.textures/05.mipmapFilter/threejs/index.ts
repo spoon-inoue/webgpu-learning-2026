@@ -52,9 +52,11 @@ geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3)
 
 Array.from({ length: 8 }, (_, i) => {
   const texture = new THREE.Texture(blendedImageData)
-  texture.needsUpdate = true
   texture.wrapS = THREE.RepeatWrapping
   texture.wrapT = THREE.RepeatWrapping
+  texture.flipY = false // default: true
+  texture.generateMipmaps = true // default
+
   texture.magFilter = i & 1 ? THREE.LinearFilter : THREE.NearestFilter
 
   const minLinear = Boolean(i & 2)
