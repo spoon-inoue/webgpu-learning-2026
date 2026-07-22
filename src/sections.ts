@@ -39,6 +39,8 @@ export const sections: { title: string; links: { href: string; label: string; ha
       { href: '/06.textures/01.F-texture', label: 'Fの描画' },
       { href: '/06.textures/02.magFilter', label: 'magFilter' },
       { href: '/06.textures/03.minFilter', label: 'minFilter' },
+      { href: '/06.textures/04.mipmap', label: 'mipmap' },
+      { href: '/06.textures/05.mipmapFilter', label: 'mipmapFilter' },
     ],
   },
   {
