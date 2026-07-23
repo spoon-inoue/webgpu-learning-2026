@@ -31,7 +31,12 @@ export const sections: { title: string; links: { href: string; label: string; ha
   },
   {
     title: '頂点バッファ',
-    links: [{ href: '/05.vertex-buffers', label: '頂点バッファ' }],
+    links: [
+      { href: '/05.vertex-buffers/01.vertex', label: '頂点バッファ' },
+      { href: '/05.vertex-buffers/02.instancing', label: 'インスタンス化' },
+      { href: '/05.vertex-buffers/03.normalized-attributes', label: '色の正規化' },
+      { href: '/05.vertex-buffers/04.index-buffers', label: 'インデックスバッファ', hasThree: true },
+    ],
   },
   {
     title: 'テクスチャ',
