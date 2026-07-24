@@ -12,10 +12,7 @@ struct VSOut {
 }
 
 @vertex
-fn vs(
-  vert: Vertex,
-  @builtin(instance_index) instanceIndex: u32
-) -> VSOut {
+fn vs(vert: Vertex) -> VSOut {
   var vsOut: VSOut;
   vsOut.position = vec4f(vert.position * vert.scale + vert.offset, 0, 1);
   vsOut.color = vert.color * vert.perVertexColor;

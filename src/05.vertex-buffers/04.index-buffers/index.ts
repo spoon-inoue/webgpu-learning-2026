@@ -59,6 +59,10 @@ const pipeline = device.createRenderPipeline({
     module,
     targets: [{ format: presentationFormat }],
   },
+  primitive: {
+    // cullMode: 'back',
+    // frontFace: 'ccw', // 反時計回り（default）
+  },
 })
 
 // ==========================

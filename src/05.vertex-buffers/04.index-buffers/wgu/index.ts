@@ -68,7 +68,7 @@ const vertexAttributes = wgu.createBuffersAndAttributesFromArrays(device, {
 const instanceStaticAttributes = wgu.createBuffersAndAttributesFromArrays(
   device,
   {
-    color: { data: staticVertexColorValues, numComponents: 4 },
+    color: { data: staticVertexColorValues, numComponents: 4 } as wgu.FullArraySpec,
     offset: { data: staticVertexOffsetValues, numComponents: 2 },
   },
   { stepMode: 'instance', shaderLocation: 2 },
