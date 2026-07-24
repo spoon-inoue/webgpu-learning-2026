@@ -54,6 +54,7 @@ const material = new RawShaderMaterial({
   uniforms: {},
   vertexShader,
   fragmentShader,
+  side: THREE.DoubleSide,
 })
 
 // ===========================

@@ -1,6 +1,9 @@
 export function createCircleVertices({ radius = 1, numSubdivisions = 24, innerRadius = 0, startAngle = 0, endAngle = Math.PI * 2 } = {}) {
+  // 2 vertices at each subdivision, + 1 to wrap around the circle.
   const numVertices = (numSubdivisions + 1) * 2
-  const vertexData = new Float32Array(numVertices * 3)
+  // 2 32-bit values for position (xy) and 1 32-bit value for color (rgb)
+  // The 32-bit color value will be written/read as 4 8-bit values
+  const vertexData = new Float32Array(numVertices * 2)
   const colorData = new Uint8Array(numVertices * 4)
 
   let offset = 0
@@ -8,7 +11,6 @@ export function createCircleVertices({ radius = 1, numSubdivisions = 24, innerRa
   const addVertex = (x: number, y: number, r: number, g: number, b: number) => {
     vertexData[offset++] = x
     vertexData[offset++] = y
-    offset++ // z
 
     colorData[colorOffset++] = r * 255
     colorData[colorOffset++] = g * 255
@@ -24,7 +26,7 @@ export function createCircleVertices({ radius = 1, numSubdivisions = 24, innerRa
   // 1  3  5  7  9 ...
   //
   // 0  2  4  6  8 ...
-  for (let i = 0; i <= numSubdivisions; i++) {
+  for (let i = 0; i <= numSubdivisions; ++i) {
     const angle = startAngle + ((i + 0) * (endAngle - startAngle)) / numSubdivisions
 
     const c1 = Math.cos(angle)
