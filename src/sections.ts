@@ -49,6 +49,15 @@ export const sections: { title: string; links: { href: string; label: string; ha
     ],
   },
   {
+    title: 'テクスチャへの画像の読み込み',
+    links: [
+      { href: '/07.importing-textures/01.import', label: '画像インポート' },
+      { href: '/07.importing-textures/02.generating-mips-on-the-gpu', label: 'GPUでミップを生成する' },
+      { href: '/07.importing-textures/03.loading-canvas', label: 'キャンバスの読み込み' },
+      { href: '/07.importing-textures/04.loading-video', label: 'ビデオの読み込み' },
+    ],
+  },
+  {
     title: '透視投影',
     links: [
       { href: '/50.perspective-projection/01.divideZ', label: 'Zで割る', hasWgu: true, hasThree: true },
