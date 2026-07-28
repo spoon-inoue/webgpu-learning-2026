@@ -55,6 +55,7 @@ export const sections: { title: string; links: { href: string; label: string; ha
       { href: '/07.importing-textures/02.generating-mips-on-the-gpu', label: 'GPUでミップを生成する' },
       { href: '/07.importing-textures/03.loading-canvas', label: 'キャンバスの読み込み' },
       { href: '/07.importing-textures/04.loading-video', label: 'ビデオの読み込み' },
+      { href: '/07.importing-textures/05.texture-atlases', label: 'テクスチャアトラス' },
     ],
   },
   {

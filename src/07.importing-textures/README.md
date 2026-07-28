@@ -8,6 +8,11 @@ https://webgpufundamentals.org/webgpu/lessons/ja/webgpu-importing-textures.html
 
 ## 画像の読み込み
 
+- ImageBitmapを生成する
+- colorSpaceConversion
+  - 色空間を適用するかどうか
+- `flipY`でテクスチャを反転させる
+
 ```ts
 async function loadImageBitmap(url: string) {
   const res = await fetch(url)
@@ -31,11 +36,6 @@ device.queue.copyExternalImageToTexture(
   { width: source.width, height: source.height }
 )
 ```
-
-- ImageBitmapを生成する
-- colorSpaceConversion
-  - 色空間を適用するかどうか
-- `flipY`でテクスチャを反転させる
 
 ### 色空間とは
 
@@ -94,6 +94,9 @@ function numMipLevels(...sizes: number[]) {
 
 ### 描画
 
+- 1つ前のMipLevelのテクスチャをsourceとして、現在のMipLevelのテクスチャに書き込む
+- sourceよりも書き込み先の解像度の方が低いのため、samplerに設定した`minFilter: 'linear'`補間がされる
+
 ```ts
 const generateMips = (() => {
   let sampler: GPUSampler | null = null
@@ -151,9 +154,6 @@ const generateMips = (() => {
 })()
 ```
 
-- 1つ前のMipLevelのテクスチャをsourceとして、現在のMipLevelのテクスチャに書き込む
-- sourceよりも書き込み先の解像度の方が低いのため、samplerに設定した`minFilter: 'linear'`補間がされる
-
 ## キャンバスの読み込み
 
 Canvas2Dに描画した内容から、Mipmap付きのTextureを生成して描画ソースとして扱う
@@ -177,7 +177,11 @@ export function copySourceToTexture(device: GPUDevice, texture: GPUTexture, sour
 
 ## Videoの読み込み
 
-VVideo要素（HTMLVideoElement）を通して、VideoソースをTextureソースとして扱える
+Video要素（HTMLVideoElement）を通して、VideoソースをTextureソースとして扱える
+
+---
+
+videoの幅、高さは、`videoWidth`, `videoHeight`で取得できる
 
 ```ts
 function getSourceSize(source: Source): [number, number] {
@@ -189,7 +193,9 @@ function getSourceSize(source: Source): [number, number] {
 }
 ```
 
-- videoの幅、高さは、`videoWidth`, `videoHeight`で取得できる
+---
+
+[`requestVideoFrameCallback`](https://developer.mozilla.org/ja/docs/Web/API/HTMLVideoElement/requestVideoFrameCallback)を使うことで、最初のフレームが読み込まれたタイミングを知ることができる
 
 ```ts
 function startPlayingAndWaitForVideo(video: HTMLVideoElement) {
@@ -201,7 +207,9 @@ function startPlayingAndWaitForVideo(video: HTMLVideoElement) {
 }
 ```
 
-- [`requestVideoFrameCallback`](https://developer.mozilla.org/ja/docs/Web/API/HTMLVideoElement/requestVideoFrameCallback)を使うことで、最初のフレームが読み込まれたタイミングを知ることができる
+---
+
+videoの開始には、ユーザーの操作が必要（※音声を扱う場合）
 
 ```ts
 function waitForClick() {
@@ -219,7 +227,9 @@ function waitForClick() {
 }
 ```
 
-- videoの開始には、ユーザーの操作が必要（※音声を扱う場合）
+---
+
+`device.query.copyExternalImageToTexture`は時間のかかる処理（負荷の高い処理）なため、仮にビデオが30fpsで、描画レートが120fpsの場合、それに合わせて毎フレームテクスチャを更新する必要はなく、`requestVideoFrameCallback`が呼ばれたタイミング（videoのframe更新）でテクスチャの更新を行うと負荷軽減になる。
 
 ```ts
 let haveNewVideoFrame = false
@@ -230,4 +240,34 @@ function recordHaveNewFrame() {
 video.requestVideoFrameCallback(recordHaveNewFrame)
 ```
 
-- `device.query.copyExternalImageToTexture`は時間のかかる処理（負荷の高い処理）なため、仮にビデオが30fpsで、描画レートが120fpsの場合、rAFで120fpsでテクスチャを更新する必要はなく、`requestVideoFrameCallback`が呼ばれたタイミング（videoのframe更新）でテクスチャの更新を行うと負荷軽減になる。
+## テクスチャアトラス
+
+1つのモデルに対して、複数のテクスチャを使う場合、つまり、1回のdraw callで複数のテクスチャを扱うにはどのようにすればいいか。
+
+- テクスチャをその都度バインドすると、数が増えるたびにGPUに確保するメモリが増えて負荷が高くなる
+- バインドできるテクスチャには上限値がある
+  | パラメータ                       | 制限値 |
+  | :------------------------------- | -----: |
+  | maxSampledTexturesPerShaderStage |     48 |
+
+一般的な解決方法として「テクスチャアトラス」と呼ばれる手法がある。
+
+- 複数の画像を1枚の画像（テクスチャ）にまとめる手法
+- テクスチャ座標を計算して、使用したい画像の位置を選択する
+- 扱えるテクスチャサイズの制限値を超えないように注意する
+  | パラメータ            | 制限値（def） |
+  | :-------------------- | ------------: |
+  | maxTextureDimension2D |  16384 (8192) |
+
+Cube前面の位置とテクスチャ座標
+
+```ts
+const vertexData = new Float32Array([
+    //  位置   |  テクスチャ座標
+    //-------------+----------------------
+    // 前面     左上の画像を選択
+   -1,  1,  1,        0   , 0  ,
+   -1, -1,  1,        0   , 0.5,
+    1,  1,  1,        0.25, 0  ,
+    1, -1,  1,        0.25, 0.5,
+```
