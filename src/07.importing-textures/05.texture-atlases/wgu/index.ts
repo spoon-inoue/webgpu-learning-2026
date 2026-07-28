@@ -3,10 +3,10 @@ import { GPU } from '@/modules/webgpu/GPU'
 import { RenderTarget } from '@/modules/webgpu/RenderTarget'
 import { createResizeObserver } from '@/modules/webgpu/resize'
 import GUI from 'lil-gui'
+import * as wgu from 'webgpu-utils'
+import { mat4 } from 'wgpu-matrix'
 import shaderCode from './index.wgsl'
-import { createTextureFromImage } from './texture'
 import { createCubeVertices } from './vertices'
-import { mat4 } from './mat4'
 
 const { device, presentationFormat } = await GPU.request()
 
@@ -15,6 +15,18 @@ const renderTarget = new RenderTarget({
   canvas: document.querySelector<HTMLCanvasElement>('canvas')!,
   configure: { format: presentationFormat, alphaMode: 'premultiplied' },
   depthStencil: { enable: true, format: 'depth24plus' },
+})
+
+// =============================
+// vertex
+// =============================
+
+const { positionData, texcoordData, indexData } = createCubeVertices()
+
+const vertex = wgu.createBuffersAndAttributesFromArrays(device, {
+  position: positionData,
+  texcoord: texcoordData,
+  indices: indexData,
 })
 
 // =============================
@@ -27,15 +39,7 @@ const pipeline = device.createRenderPipeline({
   layout: 'auto',
   vertex: {
     module,
-    buffers: [
-      {
-        arrayStride: (3 + 2) * 4,
-        attributes: [
-          { shaderLocation: 0, offset: 0, format: 'float32x3' }, // position
-          { shaderLocation: 1, offset: 12, format: 'float32x2' }, // texcoord
-        ],
-      },
-    ],
+    buffers: vertex.bufferLayouts,
   },
   fragment: {
     module,
@@ -56,7 +60,7 @@ const pipeline = device.createRenderPipeline({
 // =============================
 
 const path = import.meta.env.BASE_URL + 'assets/images/noodles.jpg'
-const texture = await createTextureFromImage(device, path, { mips: true, flipY: false })
+const texture = await wgu.createTextureFromImage(device, path, { mips: true, flipY: false })
 
 const sampler = device.createSampler({
   magFilter: 'linear',
@@ -68,35 +72,15 @@ const sampler = device.createSampler({
 // uniforms
 // =============================
 
-const uniformBufferSize = 16 * 4
+const defs = wgu.makeShaderDataDefinitions(shaderCode)
+const uniforms = wgu.makeStructuredView(defs.uniforms.uni)
+
 const uniformBuffer = device.createBuffer({
-  size: uniformBufferSize,
+  size: uniforms.arrayBuffer.byteLength,
   usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
 })
 
-const uniformValues = new Float32Array(uniformBufferSize / 4)
-
-const kMatrixOffset = 0
-
-const matrixValue = uniformValues.subarray(kMatrixOffset, kMatrixOffset + 16)
-
-// =============================
-// vertex
-// =============================
-
-const { vertexData, indexData, numVertices } = createCubeVertices()
-
-const vertexBuffer = device.createBuffer({
-  size: vertexData.byteLength,
-  usage: GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST,
-})
-device.queue.writeBuffer(vertexBuffer, 0, vertexData)
-
-const indexBuffer = device.createBuffer({
-  size: indexData.byteLength,
-  usage: GPUBufferUsage.INDEX | GPUBufferUsage.COPY_DST,
-})
-device.queue.writeBuffer(indexBuffer, 0, indexData)
+const matrixValue = uniforms.views.matrix
 
 // =============================
 // bind group
@@ -146,16 +130,16 @@ function render() {
   mat4.rotateY(matrixValue, degToRad(settings.rotation[1]), matrixValue)
   mat4.rotateZ(matrixValue, degToRad(settings.rotation[2]), matrixValue)
 
-  device.queue.writeBuffer(uniformBuffer, 0, uniformValues)
+  device.queue.writeBuffer(uniformBuffer, 0, uniforms.arrayBuffer)
 
   const encoder = device.createCommandEncoder()
 
   const pass = encoder.beginRenderPass(renderTarget.renderPassDescriptor)
   pass.setPipeline(pipeline)
-  pass.setVertexBuffer(0, vertexBuffer)
-  pass.setIndexBuffer(indexBuffer, 'uint16')
+  pass.setVertexBuffer(0, vertex.buffers[0])
+  pass.setIndexBuffer(vertex.indexBuffer!, vertex.indexFormat!)
   pass.setBindGroup(0, bindGroup)
-  pass.drawIndexed(numVertices)
+  pass.drawIndexed(vertex.numElements)
   pass.end()
 
   device.queue.submit([encoder.finish()])

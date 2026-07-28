@@ -10,6 +10,8 @@ https://spoon-inoue.github.io/webgpu-learning-2026/
 - [04.storage-buffers](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/04.storage-buffers)
 - [05.vertex-buffers](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/05.vertex-buffers)
 - [06.textures](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/06.textures)
+- [07.importing-textures](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/07.importing-textures)
+- [08.textures-external-video](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/08.textures-external-video)
 
 ## 参考サイト
 
