@@ -271,3 +271,5 @@ const vertexData = new Float32Array([
     1,  1,  1,        0.25, 0  ,
     1, -1,  1,        0.25, 0.5,
 ```
+
+<img width="100%" alt="Frame 73" src="https://github.com/user-attachments/assets/4a754ffd-102f-483c-bb38-66798c76c237" />
