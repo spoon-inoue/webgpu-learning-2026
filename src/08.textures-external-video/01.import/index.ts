@@ -59,6 +59,10 @@ video.src = import.meta.env.BASE_URL + 'assets/videos/pexels-anna-bondarenko-553
 await waitForClick()
 await startPlayingAndWaitForVideo(video)
 
+// =============================
+// uniform, sampler
+// =============================
+
 const kMatrixOffset = 0
 
 const ObjectInfos = Array.from({ length: 4 }, (_, i) => {
