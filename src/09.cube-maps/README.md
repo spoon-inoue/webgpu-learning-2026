@@ -47,7 +47,10 @@ fn fs(fsIn: VSOut) -> @location(0) vec4f {
 - 表面が向く方向を表す`単位ベクトル`である
 - 今回の例の場合、Cube（立方体）の頂点座標は中心から対象になっているので、頂点座標をnormalizeしたものを法線として利用できる
 
-＜図＞
+<img width="800" alt="ダウンロード (1)" src="https://github.com/user-attachments/assets/79469f07-b236-4d60-aad8-f6f614401faa" />
+
+左：標準のキューブ法線  
+右：このキューブの法線
 
 - フラットシェーディングか、スムーズシェーディングかは上図のようなnormalの違いである
   - 頂点数は同じ
