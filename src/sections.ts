@@ -65,6 +65,10 @@ export const sections: { title: string; links: { href: string; label: string; ha
       { href: '/08.textures-external-video/02.web-camera', label: 'Web Camera' },
     ],
   },
+  {
+    title: 'キューブマップ',
+    links: [{ href: '/09.cube-maps', label: 'キューブマップ', hasWgu: true, hasThree: true }],
+  },
   // =====================================
   {
     title: '透視投影',
