@@ -2,6 +2,7 @@ type Configure = {
   format?: GPUTextureFormat
   alphaMode?: GPUCanvasAlphaMode
   clearColor?: [number, number, number, number]
+  usage?: number
 }
 
 type RenderTargetArgs = {

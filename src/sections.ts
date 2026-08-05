@@ -69,6 +69,10 @@ export const sections: { title: string; links: { href: string; label: string; ha
     title: 'キューブマップ',
     links: [{ href: '/09.cube-maps', label: 'キューブマップ', hasWgu: true, hasThree: true }],
   },
+  {
+    title: 'ストレージテクスチャ',
+    links: [{ href: '/10.storage-textures', label: 'ストレージテクスチャ' }],
+  },
   // =====================================
   {
     title: '透視投影',
@@ -122,5 +126,9 @@ export const sections: { title: string; links: { href: string; label: string; ha
   {
     title: '環境マップ（反射）',
     links: [{ href: '/58.environment-maps', label: '環境マップ（反射）' }],
+  },
+  {
+    title: 'スカイボックス',
+    links: [{ href: '/59.skybox', label: 'スカイボックス' }],
   },
 ]
