@@ -131,4 +131,22 @@ export const sections: { title: string; links: { href: string; label: string; ha
     title: 'スカイボックス',
     links: [{ href: '/59.skybox', label: 'スカイボックス' }],
   },
+  {
+    title: 'ポストプロセッシング',
+    links: [
+      { href: '/60.post-processing/01.crt-effect', label: 'CRTエフェクト' },
+      { href: '/60.post-processing/02.with-compute-shader', label: 'コンピュートシェーダの使用' },
+    ],
+  },
+  {
+    title: '画像調整',
+    links: [{ href: '/61.image-adjustments', label: '画像調整' }],
+  },
+  {
+    title: '1D Lookup Tables',
+    links: [
+      { href: '/62.1dlut/01.duotone', label: 'デュオトーン' },
+      { href: '/62.1dlut/02.using-a-texture', label: 'テクスチャを使用したLUT' },
+    ],
+  },
 ]

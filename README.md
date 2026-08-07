@@ -12,6 +12,8 @@ https://spoon-inoue.github.io/webgpu-learning-2026/
 - [06.textures](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/06.textures)
 - [07.importing-textures](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/07.importing-textures)
 - [08.textures-external-video](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/08.textures-external-video)
+- [09.cube-maps](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/09.cube-maps)
+- [10.storage-textures](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/10.storage-textures)
 
 ## 参考サイト
 

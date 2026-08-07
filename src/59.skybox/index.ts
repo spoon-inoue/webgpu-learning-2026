@@ -2,7 +2,7 @@ import { GPU } from '@/modules/webgpu/GPU'
 import { RenderTarget } from '@/modules/webgpu/RenderTarget'
 import { createResizeObserver } from '@/modules/webgpu/resize'
 import * as wgu from 'webgpu-utils'
-import { SkyBox } from './skybox'
+import { SkyBox } from './SkyBox'
 import { EnvMap } from './EnvMap'
 
 const gpu = await GPU.request()

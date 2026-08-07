@@ -76,7 +76,7 @@ export class SkyBox {
     const proj = mat4.perspective(60 * (Math.PI / 180), canvasAspect, 0.1, 10)
     const cameraPosition = [Math.cos(time * 0.1), 0, Math.sin(time * 0.1)]
     const view = mat4.lookAt(cameraPosition, [0, 0, 0], [0, 1, 0])
-    // カメラがどこにあるかではなく、どの方向を向いているかだけを気にするため、平行移動をゼロにする
+    // カメラの位置は関係なく向いている方向の情報のみ必要なため、平行移動をゼロにする
     view[12] = 0
     view[13] = 0
     view[14] = 0
