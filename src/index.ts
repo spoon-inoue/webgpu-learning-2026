@@ -5,6 +5,7 @@ const listEl = document.querySelector<HTMLElement>('ul.sections')!
 
 for (const section of sections) {
   const itemEl = document.createElement('li')
+  itemEl.classList.toggle('marker', !!section.marker)
   listEl.appendChild(itemEl)
 
   const titleEl = document.createElement('p')
@@ -45,13 +46,3 @@ for (const section of sections) {
     }
   }
 }
-
-const f32 = new Float32Array(5) // 5要素分
-const f32_1_2 = f32.subarray(0, 2)
-const f32_3_5 = f32.subarray(2, 5)
-
-f32_1_2.set([1, 2])
-f32_3_5.set([3, 4, 5])
-
-console.log(f32)
-// 1, 2, 3, 4, 5

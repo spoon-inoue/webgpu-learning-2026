@@ -1,4 +1,4 @@
-export const sections: { title: string; links: { href: string; label: string; hasWgu?: boolean; hasThree?: boolean }[] }[] = [
+export const sections: { title: string; marker?: boolean; links: { href: string; label: string; hasWgu?: boolean; hasThree?: boolean }[] }[] = [
   {
     title: 'WebGPUの基本',
     links: [
@@ -73,8 +73,21 @@ export const sections: { title: string; links: { href: string; label: string; ha
     title: 'ストレージテクスチャ',
     links: [{ href: '/10.storage-textures', label: 'ストレージテクスチャ' }],
   },
+  {
+    title: 'マルチサンプリング',
+    links: [{ href: '/11.multisampling', label: 'マルチサンプリング' }],
+  },
+  {
+    title: '透明度とブレンディング',
+    links: [
+      { href: '/12.transparency/01.canvas-alpha-mode', label: 'キャンバスのalphaMode' },
+      { href: '/12.transparency/02.discard', label: '破棄' },
+      { href: '/12.transparency/03.blending', label: 'ブレンド設定' },
+    ],
+  },
   // =====================================
   {
+    marker: true,
     title: '透視投影',
     links: [
       { href: '/50.perspective-projection/01.divideZ', label: 'Zで割る', hasWgu: true, hasThree: true },

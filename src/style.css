@@ -36,6 +36,9 @@ ul {
       margin-top: 15px;
       padding-top: 10px;
       border-top: 1px solid color-mix(in srgb, #fff, transparent 70%);
+      &.marker {
+        border-color: #f00;
+      }
     }
 
     .title {
@@ -43,6 +46,9 @@ ul {
       display: grid;
       grid-template-columns: 25px 1fr;
       align-items: end;
+      + * {
+        margin-top: 10px;
+      }
 
       &::before {
         content: counter(section, decimal-leading-zero) '.';
