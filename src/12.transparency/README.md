@@ -15,7 +15,7 @@ WebGPUキャンバスの透明度について
 
 ---
 
-<図>
+<img width="1000" alt="Frame 94" src="https://github.com/user-attachments/assets/bf6f51e1-6d9d-4966-9c0a-4ef98ebe5824" />
 
 - alphaModeを`premultiplied`に設定した状態
 - 左図：WebGPU Canvasの色(clearValue)をそのまま出力
