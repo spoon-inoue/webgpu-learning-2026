@@ -186,6 +186,49 @@ result = src * 1 + dst * (1 - src.a)
 - つまり、事前乗算される前のsrcとdstに対するsrc.aの線形補間になっている
 
 ```ts
-// v = a * (1 - t) * b * t
+// v = a * (1 - t) + b * t
 result = src * src.a + dst * (1 - src.a)
+```
+
+### サンプル
+
+BindGroupLayout, PipelineLayoutを作成するケース
+
+- Pipelineを複数作成したいため、BindGroupLayout, PipelineLayoutを作成する
+- PipelineLayoutを`auto`で作成した場合、複数のPipelineでBindGroupLayout, PipelineLayoutを共有できない
+
+---
+
+| パラメータ | 値   |
+| :--------- | :--- |
+| operation  | add  |
+| src factor | one  |
+| dst factor | zero |
+
+```ts
+src_result = src * 1 + dst * 0
+```
+
+---
+
+| パラメータ | 値                  |
+| :--------- | :------------------ |
+| operation  | add                 |
+| src factor | one                 |
+| dst factor | one-minus-src-alpha |
+
+```ts
+src_result = src * 1 + dst * (1 - src.a)
+```
+
+---
+
+| パラメータ | 値                  |
+| :--------- | :------------------ |
+| operation  | add                 |
+| src factor | one-minus-dst-alpha |
+| dst factor | one                 |
+
+```ts
+src_result = src * (1 - dst.a) + dst * 1
 ```
