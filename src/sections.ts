@@ -75,14 +75,17 @@ export const sections: { title: string; marker?: boolean; links: { href: string;
   },
   {
     title: 'マルチサンプリング',
-    links: [{ href: '/11.multisampling', label: 'マルチサンプリング' }],
+    links: [
+      { href: '/11.multisampling/01.multisampling', label: 'マルチサンプリングの使用方法' },
+      { href: '/11.multisampling/02.multi-pass', label: 'マルチパス' },
+    ],
   },
   {
     title: '透明度とブレンディング',
     links: [
       { href: '/12.transparency/01.canvas-alpha-mode', label: 'キャンバスのalphaMode' },
       { href: '/12.transparency/02.discard', label: '破棄' },
-      { href: '/12.transparency/03.blending', label: 'ブレンド設定' },
+      { href: '/12.transparency/03.blending', label: 'ブレンド設定', hasThree: true },
     ],
   },
   // =====================================

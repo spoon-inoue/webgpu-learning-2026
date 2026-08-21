@@ -199,6 +199,8 @@ BindGroupLayout, PipelineLayoutを作成するケース
 
 ---
 
+#### デフォルト
+
 | パラメータ | 値   |
 | :--------- | :--- |
 | operation  | add  |
@@ -212,6 +214,8 @@ src_result = src * 1 + dst * 0
 <img width="700" alt="add_one_zero" src="https://github.com/user-attachments/assets/a79fc5a4-cc5d-4032-8977-21318e363405" />
 
 ---
+
+#### premultiplyしている場合の一般的なブレンド
 
 | パラメータ | 値                  |
 | :--------- | :------------------ |
@@ -227,6 +231,8 @@ src_result = src * 1 + dst * (1 - src.a)
 
 ---
 
+### 上記の例の逆
+
 | パラメータ | 値                  |
 | :--------- | :------------------ |
 | operation  | add                 |
@@ -238,4 +244,3 @@ src_result = src * (1 - dst.a) + dst * 1
 ```
 
 <img width="700" alt="add_one-minus-dst_alpha_one" src="https://github.com/user-attachments/assets/e6f0b98f-2244-43bf-856a-8581a4f2ca73" />
-
