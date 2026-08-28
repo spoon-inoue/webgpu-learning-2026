@@ -1,6 +1,6 @@
 # TRS
 
-TRSは、`Transition Rotation Scale`の略称
+TRSは、`Translation Rotation Scale`の略称
 
 ## 平行移動
 
@@ -75,7 +75,7 @@ $$
 
 https://webgpufundamentals.org/webgpu/lessons/ja/webgpu-scale.html
 
-回転は、Vertex Shader内で、positionに値を乗算をして頂点位置を拡縮すること。
+スケールは、Vertex Shader内で、positionに値を乗算をして頂点位置を拡縮すること。
 
 ```wgsl
 let scaledPosition = vert.position * uni.scale;
@@ -243,8 +243,8 @@ $$
 #### matrix[column][row] でアクセスする
 
 ```wgsl
-let column = m[0]; // column 0 -> [1, 5, 9, 13]
-let a = m[2][1];   // column 2, row 1 -> 7
+let column = m[0]; // column 0 -> [1, 2, 3, 4]
+let a = m[2][1];   // column 2, row 1 -> 10
 ```
 
 #### 平行移動行列の場合
@@ -366,7 +366,6 @@ for (const {} of objectInfos) {
 ```
 
 <img width="356" height="239" alt="スクリーンショット 2026-08-28 094237" src="https://github.com/user-attachments/assets/4f609bd9-02f8-46bc-ae86-5074c9f63ed6" />
-
 
 #### 回転、スケールの中心の変更
 
