@@ -365,7 +365,8 @@ for (const {} of objectInfos) {
 }
 ```
 
-<図>
+<img width="356" height="239" alt="スクリーンショット 2026-08-28 094237" src="https://github.com/user-attachments/assets/4f609bd9-02f8-46bc-ae86-5074c9f63ed6" />
+
 
 #### 回転、スケールの中心の変更
 
