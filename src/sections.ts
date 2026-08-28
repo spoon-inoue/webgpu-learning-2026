@@ -88,6 +88,26 @@ export const sections: { title: string; marker?: boolean; links: { href: string;
       { href: '/12.transparency/03.blending', label: 'ブレンド設定', hasThree: true },
     ],
   },
+  {
+    title: 'バインドグループレイアウト',
+    links: [
+      { href: '/13.bind-group-layouts/01.rgba32float', label: 'rgba32float' },
+      { href: '/13.bind-group-layouts/02.dynamic-offsets', label: '動的オフセット' },
+      { href: '/13.bind-group-layouts/03.sharing-bind-groups', label: 'バインドグループ共有' },
+    ],
+  },
+  {
+    title: 'TRS',
+    links: [
+      { href: '/14.TRS/01.translation', label: '平行移動' },
+      { href: '/14.TRS/02.rotation', label: '回転' },
+      { href: '/14.TRS/03.scale', label: 'スケール' },
+      { href: '/14.TRS/04.matrix-math/01.composite', label: '行列演算 - 複合' },
+      { href: '/14.TRS/04.matrix-math/02.five-F', label: '行列の柔軟性' },
+      { href: '/14.TRS/04.matrix-math/03.centering', label: '中心の変更' },
+      { href: '/14.TRS/04.matrix-math/04.projection', label: '正射影マトリクス' },
+    ],
+  },
   // =====================================
   {
     marker: true,
