@@ -316,6 +316,16 @@ $$
 > WebGPUでは、$z_{ndc} \in [0, 1]$
 > WebGLでは、$z_{ndc} \in [-1, 1]$
 
+> [!NOTE]
+> なぜ、zは以下の形で表されるのか
+> $$
+> z_{clip} = Az + B
+> $$
+> nearとfarの2変数を変換し、$w_{clip}$で割った時に$z_{ndc}$となるような$z_{clip}$を求める必要があるため。
+> $$
+> near → 0, \quad far → 1, \quad z_{ndc} = \frac{z_{clip}}{w_{clip}}
+> $$
+
 ---
 
 ### 6. near / far の条件を代入する
