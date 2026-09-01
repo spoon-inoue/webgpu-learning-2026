@@ -108,6 +108,23 @@ export const sections: { title: string; marker?: boolean; links: { href: string;
       { href: '/14.TRS/04.matrix-math/04.projection', label: '正射影マトリクス' },
     ],
   },
+  {
+    title: '正射影',
+    links: [
+      { href: '/15.orthographic-projection/01.plane', label: '平面' },
+      { href: '/15.orthographic-projection/02.3d', label: '3D' },
+      { href: '/15.orthographic-projection/03.3d-depth', label: '3D Depth' },
+      { href: '/15.orthographic-projection/04.3d-ortho', label: '3D Ortho' },
+    ],
+  },
+  {
+    title: '透視投影',
+    links: [
+      { href: '/16.perspective-projection/01.div-z', label: 'Div Z' },
+      { href: '/16.perspective-projection/02.div-z-matrix', label: 'Div Z Matrix' },
+      { href: '/16.perspective-projection/03.clipspace-z', label: 'Clipspace Z' },
+    ],
+  },
   // =====================================
   {
     marker: true,
