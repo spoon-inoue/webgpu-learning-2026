@@ -1,11 +1,11 @@
+import { degToRad } from '@/modules/common/math'
 import { GPU } from '@/modules/webgpu/GPU'
 import { RenderTarget } from '@/modules/webgpu/RenderTarget'
 import { createResizeObserver } from '@/modules/webgpu/resize'
-import shader from './index.wgsl'
 import GUI from 'lil-gui'
-import { degToRad } from '@/modules/common/math'
+import shader from './index.wgsl'
+import { mat4 } from './matrix'
 import { createFVertices } from './vertex'
-import { makeZToWMatrix, mat4 } from './matrix'
 
 const { device, presentationFormat } = await GPU.request()
 
