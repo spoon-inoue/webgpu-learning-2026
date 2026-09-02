@@ -137,22 +137,6 @@ export const sections: { title: string; marker?: boolean; links: { href: string;
   // =====================================
   {
     marker: true,
-    title: '透視投影',
-    links: [
-      { href: '/50.perspective-projection/01.divideZ', label: 'Zで割る', hasWgu: true, hasThree: true },
-      { href: '/50.perspective-projection/02.matrix', label: 'Matrixに統合する', hasWgu: true, hasThree: true },
-      { href: '/50.perspective-projection/03.perspective', label: '透視投影', hasWgu: true, hasThree: true },
-    ],
-  },
-  {
-    title: 'カメラ',
-    links: [
-      { href: '/51.cameras/01.view-matrix', label: 'View Matrix', hasWgu: true, hasThree: true },
-      { href: '/51.cameras/02.lookAt', label: 'Look at', hasWgu: true, hasThree: true },
-      { href: '/51.cameras/03.aim', label: 'Aim To F', hasWgu: true, hasThree: true },
-    ],
-  },
-  {
     title: '行列スタック',
     links: [
       { href: '/52.matrix-stacks/01.cabinet', label: 'Cabinet', hasWgu: true, hasThree: true },
