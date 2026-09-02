@@ -90,6 +90,7 @@ Zのクリップ空間は、`0 ~ 1`の範囲になる。（XYは、-1 ~ 1）
 このクリップ空間を考慮した透視投影行列は以下のように記述できる。
 
 $$
+P=
 \begin{bmatrix}
 f / asp & 0 &              0 &                     0 \\
       0 & f &              0 &                     0 \\
@@ -293,25 +294,43 @@ $$
 導出
 
 $$
+\begin{aligned}
 \begin{bmatrix}
-f/a & 0 &  0 & 0 \\
-0 & f &  0 & 0 \\
-0 & 0 &  A & B \\
+\frac{f}{a} & 0 & 0 & 0 \\
+0 & f & 0 & 0 \\
+0 & 0 & A & B \\
 0 & 0 & -1 & 0
 \end{bmatrix}
 \begin{bmatrix}
 x \\
 y \\
 z \\
-1 \\
-\end{bmatrix} \\[1em]
+1
+\end{bmatrix}
+\end{aligned}
+$$
 
-z_{clip} = Az + B \\[1em]
-w_{clip} = -z \\[2em]
+$$
+z_{\mathrm{clip}} = Az + B
+$$
 
-z_{ndc} = \frac{z_{clip}}{w_{clip}} = \frac{Az}{-z} + \frac{B}{-z} = -A - \frac{B}{z} \\[1em]
-z_{ndc} = \frac{s}{z} + c \\[1em]
-s = -B, \quad c = -A
+$$
+w_{\mathrm{clip}} = -z
+$$
+
+$$
+z_{\mathrm{ndc}}
+= \frac{z_{\mathrm{clip}}}{w_{\mathrm{clip}}}
+= \frac{Az}{-z} + \frac{B}{-z}
+= -A - \frac{B}{z}
+$$
+
+$$
+z_{\mathrm{ndc}} = \frac{s}{z} + c
+$$
+
+$$
+s = -B, \qquad c = -A
 $$
 
 この未知数`s`, `c`を求める。
