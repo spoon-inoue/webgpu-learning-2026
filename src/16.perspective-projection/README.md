@@ -8,7 +8,7 @@ https://webgpufundamentals.org/webgpu/lessons/ja/webgpu-perspective-projection.h
 
 遠近感を簡単に達成する方法には、クリップ空間のXYの値をZで割る。
 
-<図>
+<img width="313" height="191" alt="orthographic-vs-perspective" src="https://github.com/user-attachments/assets/051f024e-d1b1-4ef3-a584-cd5fd1d95f02" />
 
 - Zが大きくなるほど（つまり深度が遠いほど）、小さく遠くに見えるように描画される
 - クリップ空間で除算すると、Zの範囲が`0から1に収まる`ため、より再現性が高くなる
@@ -78,12 +78,12 @@ mat4.multiply(makeZToWMatrix(settings.fudgeFactor), projection, matrixValue)
 
 いままでのコードでは「F」が見切れてしまう。
 
-<図>
+<img width="791" height="391" alt="スクリーンショット 2026-09-01 094233" src="https://github.com/user-attachments/assets/1ea8455c-57f8-41cc-8035-2ef1fba62401" />
 
 これは、Zがクリップ空間外に出ているからである。\
 Zのクリップ空間は、`0 ~ 1`の範囲になる。（XYは、-1 ~ 1）
 
-<図>
+<img width="544" height="379" alt="スクリーンショット 2026-09-01 095342" src="https://github.com/user-attachments/assets/a857a371-dd7f-46b4-bd64-62e39966eb62" />
 
 `Frustum（錐台）`は、円錐または角錐の上部が底面に平行な平面で切り取られたもの。
 
@@ -109,6 +109,10 @@ $$
 $$
 
 ---
+
+透視投影行列$P$を導出する。
+
+<img width="640" height="500" alt="nRgAD" src="https://github.com/user-attachments/assets/c5d9d622-bc86-4607-85d9-8ea0a0375589" />
 
 ### 1. Y方向を求める
 
