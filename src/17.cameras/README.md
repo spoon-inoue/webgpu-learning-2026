@@ -75,7 +75,7 @@ $$
 
 これは、カメラのローカル座標で見たときのZ軸にあたる。
 
-<図>
+<img width="800" alt="zAxis" src="https://github.com/user-attachments/assets/02149ed7-fa2a-4052-b506-441fb4144c8d" />
 
 正規化したベクトルを行列にすると、
 
@@ -110,7 +110,7 @@ $$
 xAxis = up \times zAxis
 $$
 
-<図>
+<img width="800" alt="xAxis" src="https://github.com/user-attachments/assets/23605d5e-e782-44fd-a7cd-1abb5ef35b54" />
 
 ### 3. Y軸を求める
 
@@ -120,7 +120,7 @@ $$
 yAxis = zAxis \times xAxis
 $$
 
-<図>
+<img width="800" alt="yAxis" src="https://github.com/user-attachments/assets/53abb037-f166-4b37-822b-de116f9e7394" />
 
 以上より、CameraAim行列は
 
@@ -256,4 +256,4 @@ aim(eye: Vec3, target: Vec3, up: Vec3, dst?: Matrix) {
 },
 ```
 
-<図>
+<img width="800" alt="スクリーンショット 2026-09-02 174456" src="https://github.com/user-attachments/assets/7c4a6925-5c99-4d20-9426-4e59e9a14659" />
