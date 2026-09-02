@@ -336,18 +336,18 @@ $$
 この未知数`s`, `c`を求める。
 
 > [!IMPORTANT]
-> WebGPUでは、$z_{ndc} \in [0, 1]$
-> WebGLでは、$z_{ndc} \in [-1, 1]$
+> WebGPUでは、$`z_{ndc} \in [0, 1]`$ \
+> WebGLでは、$`z_{ndc} \in [-1, 1]`$
 
 > [!NOTE]
 > なぜ、zは以下の形で表されるのか
-> $$
+> ```math
 > z_{clip} = Az + B
-> $$
-> nearとfarの2変数を変換し、$w_{clip}$で割った時に$z_{ndc}$となるような$z_{clip}$を求める必要があるため。
-> $$
+> ```
+> nearとfarの2変数を変換し、$`w_{clip}`$で割った時に$`z_{ndc}`$となるような$`z_{clip}`$を求める必要があるため。
+> ```math
 > near → 0, \quad far → 1, \quad z_{ndc} = \frac{z_{clip}}{w_{clip}}
-> $$
+> ```
 
 ---
 
@@ -392,19 +392,16 @@ $$
 したがって、以下の連立方程式を解けばよい。
 
 $$
-\left\{
-\begin{array}{rcl}
-\displaystyle \frac{s}{-near} + c &=& 0 \qquad (1) \\[1em]
-\displaystyle \frac{s}{-far}  + c &=&  1 \qquad (2)
-\end{array}
-\right.
+\begin{cases}
+\displaystyle \frac{s}{-near} + c = 0 \qquad (1) \\
+\displaystyle \frac{s}{-far} + c = 1 \qquad (2)
+\end{cases}
 $$
 
 以降、
 
 $$
-near = N \\
-far = F
+near = N, \quad far = F
 $$
 
 とする。
@@ -413,25 +410,35 @@ $$
 
 ### 7. s, cを求める
 
-`s`について、$(2) - (1)$をすると、
+`s`について、$`(2) - (1)`$をすると、
 
 $$
-\frac{s}{-F} - \frac{s}{-N} = 1 \\[1em]
+\frac{s}{-F} - \frac{s}{-N} = 1
+$$
 
-\frac{s \times N}{-F \times N} - \frac{s \times F}{-N \times F} = 1 \\[1em]
+$$
+\frac{s \times N}{-F \times N} - \frac{s \times F}{-N \times F} = 1
+$$
 
-s\frac{N - F}{-N \times F} = 1 \\[1em]
+$$
+s\frac{N - F}{-N \times F} = 1
+$$
 
+$$
 s = \frac{NF}{F - N}
 $$
 
-`c`について、$(1)$に`s`を代入すると、
+`c`について、$`(1)`$に`s`を代入すると、
 
 $$
-\frac{s}{-N} + c = 0 \\[1em]
+\frac{s}{-N} + c = 0
+$$
 
-c = s \times \frac{1}{N} = \frac{NF}{F - N} \times \frac{1}{N} \\[1em]
+$$
+c = s \times \frac{1}{N} = \frac{NF}{F - N} \times \frac{1}{N}
+$$
 
+$$
 c = \frac{F}{F - N}
 $$
 
@@ -442,22 +449,30 @@ $$
 以上より
 
 $$
-z_{ndc} = \frac{s}{z} + c \\[1em]
-z_{ndc} = \frac{NF}{F - N} \times \frac{1}{z} + \frac{F}{F - N} \\[1em]
+z_{ndc} = \frac{s}{z} + c
+$$
+
+$$
+z_{ndc} = \frac{NF}{F - N} \times \frac{1}{z} + \frac{F}{F - N}
 $$
 
 ここで、
 
 $$
-w_{clip} = -z \\[1em]
+w_{clip} = -z
+$$
+
+$$
 z_{clip} = z_{ndc} \times w_{clip}
 $$
 
 なので、
 
 $$
-z_{clip} = \left(\frac{NF}{F - N} \times \frac{1}{z} + \frac{F}{F - N}\right) \times -z \\[1em]
+z_{clip} = \left(\frac{NF}{F - N} \times \frac{1}{z} + \frac{F}{F - N}\right) \times -z
+$$
 
+$$
 z_{clip} = \frac{F}{N - F}z + \frac{NF}{N - F}
 $$
 
