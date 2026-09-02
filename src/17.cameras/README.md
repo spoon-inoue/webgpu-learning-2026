@@ -70,12 +70,12 @@ $$
 zAxis = eye - target
 $$
 
-※カメラは`-Zを向いている`ため、`eye - target`となる
-
-
 これは、カメラのローカル座標で見たときのZ軸にあたる。
 
 <img width="800" alt="zAxis" src="https://github.com/user-attachments/assets/02149ed7-fa2a-4052-b506-441fb4144c8d" />
+
+>[!NOTE]
+>カメラが`-Zを向いている`ことを前提に、projection matrixを生成しているため、カメラの+Z軸を生成するためには、`eye - target`となる。
 
 正規化したベクトルを行列にすると、
 
