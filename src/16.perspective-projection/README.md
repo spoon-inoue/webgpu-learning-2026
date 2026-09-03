@@ -20,7 +20,7 @@ vsOut.position = vec4f(position.xy / zToDivideBy, position.zw);
 
 - `fudgeFactor`は「調整係数」を意味し、この場合深度をスケールさせる
 
-<投影方法の比較図>
+<img width="328" height="196" alt="Frame 37255" src="https://github.com/user-attachments/assets/460360f6-758f-4cd5-9bd1-986f00fac494" />
 
 WebGPUは、頂点シェーダーの戻り値`@builtin(position)`に割り当てたx, y, zを`パイプライン上で、wで除算する`。\
 特にこれを「`透視除算（Perspective Divide）`」という。
