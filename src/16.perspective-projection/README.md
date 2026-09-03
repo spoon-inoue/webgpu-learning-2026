@@ -176,9 +176,9 @@ $$
 に対して、
 
 $$
-x_{clip} = \frac{x_{clip}}{w_{clip}}，
-y_{clip} = \frac{y_{clip}}{w_{clip}}，
-z_{clip} = \frac{z_{clip}}{w_{clip}}
+x_{ndc} = \frac{x_{clip}}{w_{clip}}，
+y_{ndc} = \frac{y_{clip}}{w_{clip}}，
+z_{ndc} = \frac{z_{clip}}{w_{clip}}
 $$
 
 という`Perspective Divide`が行われる。
