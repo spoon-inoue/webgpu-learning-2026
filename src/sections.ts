@@ -134,23 +134,24 @@ export const sections: { title: string; marker?: boolean; links: { href: string;
       { href: '/17.cameras/04.aim', label: 'Aim' },
     ],
   },
-  // =====================================
   {
-    marker: true,
     title: '行列スタック',
     links: [
-      { href: '/52.matrix-stacks/01.cabinet', label: 'Cabinet', hasWgu: true, hasThree: true },
-      { href: '/52.matrix-stacks/02.recursive-tree', label: 'Recursive Tree', hasWgu: true, hasThree: true },
+      { href: '/18.matrix-stacks/01.cabinets/01.cube', label: 'Cabinets - 箱' },
+      { href: '/18.matrix-stacks/01.cabinets/02.drawer', label: 'Cabinets - 引き出し' },
+      { href: '/18.matrix-stacks/01.cabinets/03.cabinet', label: 'Cabinets - キャビネット' },
+      { href: '/18.matrix-stacks/01.cabinets/04.cabinets', label: 'Cabinets - キャビネット（複数）' },
+      { href: '/18.matrix-stacks/02.recursive-tree/01.recursive-tree', label: '再帰的な木' },
+      { href: '/18.matrix-stacks/02.recursive-tree/02.ornament', label: '再帰的な木 - 装飾' },
     ],
   },
   {
     title: 'シーングラフ',
-    links: [
-      { href: '/53.scene-graphs/01.cabinet', label: 'Cabinet', hasWgu: true, hasThree: true },
-      { href: '/53.scene-graphs/02.animation', label: 'Animation', hasWgu: true, hasThree: true },
-    ],
+    links: [],
   },
+  // =====================================
   {
+    marker: true,
     title: '指向性ライティング',
     links: [{ href: '/54.lighting-directional', label: '指向性ライティング' }],
   },

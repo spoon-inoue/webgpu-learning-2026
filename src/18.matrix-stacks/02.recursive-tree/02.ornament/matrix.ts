@@ -1,6 +1,6 @@
 import { vec3 } from './Vec3'
 
-type Matrix = Float32Array | number[]
+export type Matrix = Float32Array | number[]
 type Vec3 = [number, number, number] | Float32Array
 
 function set(src: Matrix, dst: Matrix) {
@@ -20,11 +20,15 @@ function set(src: Matrix, dst: Matrix) {
   dst[13] = src[13]
   dst[14] = src[14]
   dst[15] = src[15]
-
   return dst
 }
 
 export const mat4 = {
+  copy(src: Matrix, dst?: Matrix) {
+    dst = dst || new Float32Array(16)
+    return set(src, dst)
+  },
+
   projection(width: number, height: number, depth: number, dst?: Matrix) {
     // Note: This matrix flips the Y axis so that 0 is at the top.
     return mat4.ortho(0, width, height, 0, depth, -depth, dst)
