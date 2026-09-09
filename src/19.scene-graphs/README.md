@@ -9,7 +9,7 @@ https://webgpufundamentals.org/webgpu/lessons/ja/webgpu-scene-graphs.html
 
 構造を図にすると以下のようになる。
 
-<!-- 図 -->
+<img width="1295" height="830" alt="Frame 37269" src="https://github.com/user-attachments/assets/fa7a5fd1-6e65-43e2-9baa-dcf9ca3b99f0" />
 
 - `Mesh`は緑色で、描画対象のオブジェクトを示す
 - `Group`は青色で、Matrixをもつオブジェクトを示す
@@ -269,8 +269,7 @@ https://github.com/mrdoob/three.js/blob/148ef33ecb6d2502ff796d4554abd1549c95d519
 
 ### カメラもノード
 
-Three.jsのドキュメントでは、対象のクラスが継承しているクラスを知ることができる。
-
-<!-- 図 -->
-
+Three.jsのドキュメントでは、対象のクラスが継承しているクラスを知ることができる。\
 `Camera`や`Light`もObject3D（ノード）あることがわかる。
+
+<img width="1200" height="265" alt="スクリーンショット 2026-09-09 162203" src="https://github.com/user-attachments/assets/e0d91026-bfa0-467d-9711-93253eeeb563" />
