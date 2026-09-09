@@ -147,7 +147,11 @@ export const sections: { title: string; marker?: boolean; links: { href: string;
   },
   {
     title: 'シーングラフ',
-    links: [],
+    links: [
+      { href: '/19.scene-graphs/01.scene-graphs', label: 'シーングラフ' },
+      { href: '/19.scene-graphs/02.gui', label: 'GUI' },
+      { href: '/19.scene-graphs/03.animation', label: 'アニメーション' },
+    ],
   },
   // =====================================
   {
