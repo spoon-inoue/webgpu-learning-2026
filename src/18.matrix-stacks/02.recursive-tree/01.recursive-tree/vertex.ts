@@ -1,5 +1,3 @@
-type N3 = [number, number, number]
-
 export function createCubeVertices() {
   // prettier-ignore
   const positions = [
