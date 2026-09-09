@@ -2,8 +2,14 @@
 
 https://webgpufundamentals.org/webgpu/lessons/ja/webgpu-scene-graphs.html
 
-- シーングラフは、オブジェクト間で親子関係をつくり、`WorldMatrix`を解決するための構造
+- シーングラフは、オブジェクト間で親子関係をつくり、`World Matrix`を解決するための構造
 - オブジェクトは実体（描画対象）がなくてもOK
+
+Three.js（WebGL）のVertex Shaderでは、以下のような記述をよく目にするが、これの`modelMatrix`がScene座標系に変換するための行列になっている。
+
+```glsl
+gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1);
+```
 
 ## キャビネットの例
 
