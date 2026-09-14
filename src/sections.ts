@@ -153,20 +153,20 @@ export const sections: { title: string; marker?: boolean; links: { href: string;
       { href: '/19.scene-graphs/03.animation', label: 'アニメーション' },
     ],
   },
-  // =====================================
   {
-    marker: true,
     title: '指向性ライティング',
-    links: [{ href: '/54.lighting-directional', label: '指向性ライティング' }],
+    links: [{ href: '/20.lighting-directional', label: '指向性ライティング' }],
   },
   {
     title: '点光源',
     links: [
-      { href: '/55.lighting-point/01.point-light', label: '点光源' },
-      { href: '/55.lighting-point/02.specular', label: 'スペキュラハイライト' },
+      { href: '/21.lighting-point/01.point-light', label: '点光源' },
+      { href: '/21.lighting-point/02.specular', label: 'スペキュラハイライト' },
     ],
   },
+  // =====================================
   {
+    marker: true,
     title: 'スポットライト',
     links: [{ href: '/56.lighting-spot', label: 'スポットライト' }],
   },
