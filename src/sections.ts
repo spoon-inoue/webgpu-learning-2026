@@ -164,13 +164,16 @@ export const sections: { title: string; marker?: boolean; links: { href: string;
       { href: '/21.lighting-point/02.specular', label: 'スペキュラハイライト' },
     ],
   },
+  {
+    title: 'スポットライト',
+    links: [
+      { href: '/22.lighting-spot/01.lighting-spot', label: 'スポットライト' },
+      { href: '/22.lighting-spot/02.penumbra', label: '半影' },
+    ],
+  },
   // =====================================
   {
     marker: true,
-    title: 'スポットライト',
-    links: [{ href: '/56.lighting-spot', label: 'スポットライト' }],
-  },
-  {
     title: 'クリップ空間をカバーする大きな三角形',
     links: [{ href: '/57.large-triangle-to-cover-clip-space', label: 'クリップ空間をカバーする大きな三角形' }],
   },

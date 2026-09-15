@@ -23,6 +23,9 @@ https://spoon-inoue.github.io/webgpu-learning-2026/
 - [17.cameras](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/17.cameras)
 - [18.matrix-stacks](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/18.matrix-stacks)
 - [19.scene-graphs](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/19.scene-graphs)
+- [20.lighting-directional](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/20.lighting-directional)
+- [21.lighting-point](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/21.lighting-point)
+- [22.lighting-spot](https://github.com/spoon-inoue/webgpu-learning-2026/tree/main/src/22.lighting-spot)
 
 ## 参考サイト
 
