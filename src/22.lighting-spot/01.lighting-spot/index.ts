@@ -3,10 +3,10 @@ import { GPU } from '@/modules/webgpu/GPU'
 import { RenderTarget } from '@/modules/webgpu/RenderTarget'
 import { createResizeObserver } from '@/modules/webgpu/resize'
 import GUI from 'lil-gui'
+import * as wgu from 'webgpu-utils'
 import { mat3, mat4 } from 'wgpu-matrix'
 import shader from './index.wgsl?raw'
 import { createFVertices } from './vertex'
-import * as wgu from 'webgpu-utils'
 
 const { device, presentationFormat } = await GPU.request()
 
